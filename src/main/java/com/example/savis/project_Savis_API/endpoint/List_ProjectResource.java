@@ -23,7 +23,7 @@ import com.example.savis.project_Savis_API.entities.List_Projects;
 import com.example.savis.project_Savis_API.util.MessageCode;
 
 @RequestMapping("api")
-@RestController 
+@RestController   
 public class List_ProjectResource {
 	
 	@Autowired List_ProjectDAO list_ProjectDAO;
@@ -39,6 +39,7 @@ public class List_ProjectResource {
 		}
 	}
 	
+
 	
 	@PostMapping(value = "insert/list_Project",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> insertListpro(@RequestBody List_Projects list_Projects) {
@@ -64,7 +65,7 @@ public class List_ProjectResource {
 	}
 	
 	
-	@GetMapping(value = "/list_Project/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "list_Project/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<List_Projects> getById(@PathVariable("id") Integer id) {
 		try {
 			return new ServiceResponse<List_Projects>(MessageCode.SUCCESS,"sucess",list_ProjectDAO.getListproById(id));
@@ -76,7 +77,7 @@ public class List_ProjectResource {
 		}
 	}
 	
-	@DeleteMapping(value ="/delete_Listpro/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
+	@DeleteMapping(value ="delete_Listpro/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> deleteListpro(@PathVariable("id") Integer id) {
 		try {
 			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"deleteSuccess",list_ProjectDAO.deletelistPro(id));
@@ -88,7 +89,7 @@ public class List_ProjectResource {
 	}
 	
 	
-	@GetMapping(value = "/list_Project/search",produces = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "list_Project/search",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<List<List_Projects>> getByName(@RequestParam("name") String name) {
 		try {
 			return new ServiceResponse<List<List_Projects>>(MessageCode.SUCCESS,"success",list_ProjectDAO.getByName(name));
@@ -102,7 +103,7 @@ public class List_ProjectResource {
 	
 	
 
-	@PatchMapping(value = "/list_Project/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
+	@PatchMapping(value = "list_Project/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> updateName(@RequestParam("name") String name,@PathVariable("id") Integer id) {
 		try {
 			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"updateSuccess",list_ProjectDAO.updateName(name, id));
