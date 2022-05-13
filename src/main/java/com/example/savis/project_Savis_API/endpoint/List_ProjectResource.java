@@ -1,5 +1,7 @@
 package com.example.savis.project_Savis_API.endpoint;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,9 +29,9 @@ public class List_ProjectResource {
 	@Autowired List_ProjectDAO list_ProjectDAO;
 	
 	@GetMapping(value = "list_Project",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Page<List_Projects>> getListpro(Pageable pageable) {
+	public ServiceResponse<Page<List_Projects>> getListpro(Pageable pageable,@RequestParam("status") Boolean status) {
 		try {
-			return new ServiceResponse<Page<List_Projects>>(MessageCode.SUCCESS,"success",list_ProjectDAO.getListpro(pageable));
+			return new ServiceResponse<Page<List_Projects>>(MessageCode.SUCCESS,"success",list_ProjectDAO.getListpro(pageable, status));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -82,17 +84,18 @@ public class List_ProjectResource {
 			// TODO: handle exception
 			e.printStackTrace();
 			return new ServiceResponse<Boolean>(MessageCode.ERROR,"deleteError",false);
-		}
+		}	
 	}
 	
+	
 	@GetMapping(value = "/list_Project/search",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<List_Projects> getByName(@RequestParam("name") String name) {
+	public ServiceResponse<List<List_Projects>> getByName(@RequestParam("name") String name) {
 		try {
-			return new ServiceResponse<List_Projects>(MessageCode.SUCCESS,"success",list_ProjectDAO.getByName(name));
+			return new ServiceResponse<List<List_Projects>>(MessageCode.SUCCESS,"success",list_ProjectDAO.getByName(name));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return new ServiceResponse<List_Projects>(MessageCode.ERROR,"error",null);
+			return new ServiceResponse<List<List_Projects>>(MessageCode.ERROR,"error",null);
 			
 		}
 	}

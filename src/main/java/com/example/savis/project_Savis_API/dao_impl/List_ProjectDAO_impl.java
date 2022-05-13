@@ -1,5 +1,7 @@
 package com.example.savis.project_Savis_API.dao_impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,10 +19,10 @@ public class List_ProjectDAO_impl implements List_ProjectDAO{
 	
 	
 	@Override
-	public Page<List_Projects> getListpro(Pageable pageable) {
+	public Page<List_Projects> getListpro(Pageable pageable,Boolean status) {
 		// TODO Auto-generated method stub
 		try {
-			return list_ProjectRepository.findAll(pageable);
+			return list_ProjectRepository.findByStatus(pageable, status);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -80,10 +82,10 @@ public class List_ProjectDAO_impl implements List_ProjectDAO{
 	}
 
 	@Override
-	public List_Projects getByName(String name) {
+	public List<List_Projects> getByName(String name) {
 		// TODO Auto-generated method stub
 		try {
-			return list_ProjectRepository.findByName(name);
+			return list_ProjectRepository.listSearch(name);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

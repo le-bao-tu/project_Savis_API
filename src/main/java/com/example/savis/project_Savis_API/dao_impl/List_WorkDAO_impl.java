@@ -1,5 +1,7 @@
 package com.example.savis.project_Savis_API.dao_impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -48,6 +50,8 @@ public class List_WorkDAO_impl implements List_WorkDAO{
 		}
 	}
 
+	
+	
 	@Override
 	public boolean updateWork(Integer list_projectId, List_Work list_work) {
 		// TODO Auto-generated method stub
@@ -95,10 +99,10 @@ public class List_WorkDAO_impl implements List_WorkDAO{
 	}
 
 	@Override
-	public List_Work getSearchByName(String name) {
+	public List<List_Work> getSearchByName(String name) {
 		// TODO Auto-generated method stub
 		try {
-			return list_WorkRepository.findByName(name);
+			return list_WorkRepository.listSearch(name);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

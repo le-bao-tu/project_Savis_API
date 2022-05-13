@@ -1,5 +1,7 @@
 package com.example.savis.project_Savis_API.endpoint;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -91,13 +93,13 @@ public class List_WorkResource {
 	
 	
 	@GetMapping(value = "/listwork/search",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<List_Work> searchByName(@RequestParam("name") String name) {
+	public ServiceResponse<List<List_Work>> searchByName(@RequestParam("name") String name) {
 		try {
-			return new ServiceResponse<List_Work>(MessageCode.SUCCESS,"success",list_WorkDAO.getSearchByName(name));
+			return new ServiceResponse<List<List_Work>>(MessageCode.SUCCESS,"success",list_WorkDAO.getSearchByName(name));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return new ServiceResponse<List_Work>(MessageCode.SUCCESS,"error",null);
+			return new ServiceResponse<List<List_Work>>(MessageCode.SUCCESS,"error",null);
 		}
 	}
 	
