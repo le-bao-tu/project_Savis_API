@@ -1,5 +1,7 @@
 package com.example.savis.project_Savis_API.dao;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,7 +14,7 @@ public interface List_WorkDAO {
 	public boolean updateWork(Integer list_projectId , List_Work list_work);
 	public boolean deleteWork(Integer listworkId);
 	public boolean updateStatus(Boolean status , Integer id);
-	public List_Work getSearchByName(String name);
+	public List<List_Work> getSearchByName(String name);
 	
 	
 }
