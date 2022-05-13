@@ -30,7 +30,7 @@ public class List_WorkResource {
 	
 	@Autowired List_WorkDAO list_WorkDAO;
 	
-	@GetMapping(value = "list_work",produces = {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "/list_work",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Page<List_Work>> getListwork(Pageable pageable,@RequestParam("status") Boolean status) {
 		try {
 			return new ServiceResponse<Page<List_Work>>(MessageCode.SUCCESS,"success",list_WorkDAO.getList_Word(pageable,status));
@@ -67,7 +67,7 @@ public class List_WorkResource {
 	
 	
 	
-	@PatchMapping(value = "updateStatsus/{id}/listwork",produces = {MediaType.APPLICATION_JSON_VALUE})
+	@PatchMapping(value = "updateStatus/{id}/listwork",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> updateStatsus(@RequestParam("status") Boolean status , @PathVariable("id") Integer id) {
 		try {
 			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"updateSuccess",list_WorkDAO.updateStatus(status, id));

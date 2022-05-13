@@ -7,7 +7,7 @@ spring:
   jpa:
     hibernate:
       dialect: org.hibernate.dialect.SQLServer2008Dialect
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
 
 
