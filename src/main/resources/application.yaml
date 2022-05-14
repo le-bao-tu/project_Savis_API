@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=ProjectResfullSavis
+    url: jdbc:sqlserver://localhost:1433;databaseName=ProjectsResfullSavis
     username: sa
     password: 123456
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver

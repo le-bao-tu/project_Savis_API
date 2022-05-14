@@ -110,6 +110,19 @@ public class List_WorkDAO_impl implements List_WorkDAO{
 		}
 	}
 
+	@Override
+	public List_Work getListWorkById(Integer id) {
+		// TODO Auto-generated method stub
+		try {
+			return list_WorkRepository.findById(id).get();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
 	
 	
 	

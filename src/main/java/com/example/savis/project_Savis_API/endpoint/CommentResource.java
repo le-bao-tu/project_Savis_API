@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.savis.project_Savis_API.dao.CommentDAO;
 import com.example.savis.project_Savis_API.dto.ResonpeBodyDto;
 import com.example.savis.project_Savis_API.dto.ServiceResponse;
-import com.example.savis.project_Savis_API.dto.commentRequest;
-import com.example.savis.project_Savis_API.dto.userRequest;
 import com.example.savis.project_Savis_API.entities.Comment;
 import com.example.savis.project_Savis_API.util.MessageCode;
+import com.example.savis.project_Savis_API.util.commentRequest;
+import com.example.savis.project_Savis_API.util.userRequest;
 
 @RequestMapping("api")
 @RestController

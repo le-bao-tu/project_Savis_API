@@ -13,6 +13,7 @@ public interface List_WorkDAO {
 	public boolean insertWork(Integer list_projectId , List_Work list_work);
 	public boolean updateWork(Integer list_projectId , List_Work list_work);
 	public boolean deleteWork(Integer listworkId);
+	public List_Work getListWorkById(Integer id);
 	public boolean updateStatus(Boolean status , Integer id);
 	public List<List_Work> getSearchByName(String name);
 	

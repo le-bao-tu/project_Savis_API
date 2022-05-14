@@ -30,6 +30,7 @@ public class List_WorkResource {
 	
 	@Autowired List_WorkDAO list_WorkDAO;
 	
+	
 	@GetMapping(value = "/list_work",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Page<List_Work>> getListwork(Pageable pageable,@RequestParam("status") Boolean status) {
 		try {
@@ -48,7 +49,7 @@ public class List_WorkResource {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"insertSuccess",false);
+			return new ServiceResponse<Boolean>(MessageCode.ERROR,"error",false);
 		}
 	}
 	
@@ -57,14 +58,25 @@ public class List_WorkResource {
 	@PutMapping(value = "update/{listproId}/listwork" , produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> updatelistwork(@PathVariable("listproId") Integer id , @RequestBody List_Work list_Work ) {
 		try {
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"insertSuccess",list_WorkDAO.updateWork(id, list_Work));
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"updateSuccess",list_WorkDAO.updateWork(id, list_Work));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"insertSuccess",false);
+			return new ServiceResponse<Boolean>(MessageCode.ERROR,"error",false);
 		}
 	}
 	
+	
+	@GetMapping(value ="getListWorkById/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<List_Work> getListWorkById(@PathVariable("id") Integer id) {
+		try {
+			return new ServiceResponse<List_Work>(MessageCode.SUCCESS,"success",list_WorkDAO.getListWorkById(id));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return new ServiceResponse<List_Work>(MessageCode.ERROR,"error",null);
+		}
+	}
 	
 	
 	@PatchMapping(value = "updateStatus/{id}/listwork",produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -99,7 +111,7 @@ public class List_WorkResource {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return new ServiceResponse<List<List_Work>>(MessageCode.SUCCESS,"error",null);
+			return new ServiceResponse<List<List_Work>>(MessageCode.ERROR,"error",null);
 		}
 	}
 	

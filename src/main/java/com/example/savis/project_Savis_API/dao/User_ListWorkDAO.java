@@ -4,8 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.example.savis.project_Savis_API.dto.ResonpeBodyDto;
-import com.example.savis.project_Savis_API.dto.userRequest;
 import com.example.savis.project_Savis_API.entities.User_ListWork;
+import com.example.savis.project_Savis_API.util.userRequest;
 
 public interface User_ListWorkDAO {
 	public Page<User_ListWork> getUser_ListWork(Pageable pageable,Boolean status);

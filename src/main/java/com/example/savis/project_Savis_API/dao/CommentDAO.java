@@ -4,8 +4,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.example.savis.project_Savis_API.dto.ResonpeBodyDto;
-import com.example.savis.project_Savis_API.dto.commentRequest;
 import com.example.savis.project_Savis_API.entities.Comment;
+import com.example.savis.project_Savis_API.util.commentRequest;
 
 public interface CommentDAO {
 	public Page<Comment> getComment(Pageable pageable,Boolean status);

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.savis.project_Savis_API.dao.CommentDAO;
 import com.example.savis.project_Savis_API.dto.ResonpeBodyDto;
-import com.example.savis.project_Savis_API.dto.commentRequest;
 import com.example.savis.project_Savis_API.entities.Account;
 import com.example.savis.project_Savis_API.entities.Comment;
 import com.example.savis.project_Savis_API.entities.List_Work;
@@ -20,6 +19,7 @@ import com.example.savis.project_Savis_API.entities.User_ListWork;
 import com.example.savis.project_Savis_API.repository.AccountRepository;
 import com.example.savis.project_Savis_API.repository.CommentRepository;
 import com.example.savis.project_Savis_API.repository.List_WorkRepository;
+import com.example.savis.project_Savis_API.util.commentRequest;
 
 @Service 
 public class CommentDAO_impl implements CommentDAO {

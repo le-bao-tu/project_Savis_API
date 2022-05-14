@@ -1,4 +1,4 @@
-package com.example.savis.project_Savis_API.dto;
+package com.example.savis.project_Savis_API.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class commentRequest  {
-	public String title;
+public class userRequest {
 	public Integer page;
 	public Integer size;
 	public Integer listWorkId;
