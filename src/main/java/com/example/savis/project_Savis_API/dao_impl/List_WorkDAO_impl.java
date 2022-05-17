@@ -1,6 +1,9 @@
 package com.example.savis.project_Savis_API.dao_impl;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -111,11 +114,16 @@ public class List_WorkDAO_impl implements List_WorkDAO{
 	}
 
 	@Override
-	public boolean soft_Erase(Boolean role, Integer id) {
+	@Transactional
+	public boolean soft_Erase(Integer id) {
 		try {
-			List_Work list_Work = list_WorkRepository.getById(id);
-			list_Work.setRole(role);
-			list_WorkRepository.save(list_Work);
+			Optional<List_Work> list_Work = list_WorkRepository.findById(id);
+			if(list_Work.isPresent() && list_Work.get().getRole() != false) {
+				list_Work.get().setRole(false);;
+			}else {
+				System.err.println("error");
+			}
+			list_WorkRepository.save(list_Work.get());
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception

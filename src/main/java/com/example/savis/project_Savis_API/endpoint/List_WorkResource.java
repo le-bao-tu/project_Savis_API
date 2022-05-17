@@ -108,10 +108,10 @@ public class List_WorkResource {
 	
 //	xóa mềm
 
-	@PatchMapping(value = "/ /{sorfId}",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Boolean> soft_Erase(@PathVariable("sorfId")Integer id, @RequestParam("role")Boolean role) {
+	@GetMapping(value = "/soft_Erase/{sorfId}",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<Boolean> soft_Erase(@PathVariable("sorfId")Integer id) {
 		try {
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"success",list_WorkDAO.soft_Erase(role, id));
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"success",list_WorkDAO.soft_Erase(id));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

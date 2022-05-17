@@ -74,10 +74,10 @@ public class CommentResource {
 	}
 	
 //	xóa mềm 
-	@PatchMapping(value = "soft_erase/{id}",produces =  {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Boolean> soft_erase(@RequestParam("role") Boolean role, @PathVariable("id") Integer id) {
+	@GetMapping(value = "/soft_erase/{id}",produces =  {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<Boolean> soft_erase(@PathVariable("id") Integer id) {
 		try {
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"soft_eraseSuccess",commentDAO.Soft_Erase(id, role));
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"soft_eraseSuccess",commentDAO.Soft_Erase(id));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

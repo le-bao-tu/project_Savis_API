@@ -53,7 +53,7 @@ public class List_ProjectResource {
 	}
 	
 	
-	@PutMapping(value = "update/list_Prpject",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PutMapping(value = "update/list_Project",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> updateListpro(@RequestBody List_Projects list_Projects) {
 		try {
 			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"updateSuccess",list_ProjectDAO.updatelistPro(list_Projects));

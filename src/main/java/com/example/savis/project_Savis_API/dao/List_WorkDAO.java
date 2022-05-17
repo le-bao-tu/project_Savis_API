@@ -15,7 +15,7 @@ public interface List_WorkDAO {
 	public boolean deleteWork(Integer listworkId);
 	public List_Work getListWorkById(Integer id);
 	public List<List_Work> getSearchByName(String name);
-	public boolean soft_Erase(Boolean role , Integer id);
+	public boolean soft_Erase(Integer id);
 
 	
 }

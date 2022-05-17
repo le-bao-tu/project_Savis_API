@@ -105,13 +105,21 @@ public class CommentDAO_impl implements CommentDAO {
 			return false;
 		}
 	}
+	
+	
 	@Override
-	public boolean Soft_Erase(Integer id, Boolean role) {
+	public boolean Soft_Erase(Integer id) {
 		// TODO Auto-generated method stub
 		try {
-			Comment cmt = commentRepository.getById(id);
-			cmt.setRole(role);
-			commentRepository.save(cmt);
+			
+			Optional<Comment> cmt = commentRepository.findById(id);
+			if(cmt.isPresent() && cmt.get().getRole() != false) {
+				cmt.get().setRole(false);;
+			}else {
+				System.err.println("error");
+			}
+			
+			commentRepository.save(cmt.get());
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception

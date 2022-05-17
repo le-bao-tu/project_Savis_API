@@ -16,6 +16,6 @@ public interface CommentDAO {
 	public boolean UpdateComment(String titel ,Integer id);
 	public boolean DeleteComment(Integer commentId);
 //	xóa mềm 
-	public boolean Soft_Erase(Integer id , Boolean role);
+	public boolean Soft_Erase(Integer id);
 }
-  
+  	
