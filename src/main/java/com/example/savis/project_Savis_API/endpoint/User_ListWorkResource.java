@@ -3,7 +3,6 @@ package com.example.savis.project_Savis_API.endpoint;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -64,6 +63,7 @@ public class User_ListWorkResource {
 			return new ServiceResponse<Boolean>(MessageCode.ERROR,"error",false);
 		}
 	}
+	
 	@PutMapping(value = "/UpdateUser_listWork/{list_WorkId}and/{accountId}",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> Updatelist_User(@PathVariable("list_WorkId")Integer listWorkId,@PathVariable("accountId")Integer accountId,@RequestBody User_ListWork user_ListWork) {
 		try {
@@ -74,6 +74,8 @@ public class User_ListWorkResource {
 			return new ServiceResponse<Boolean>(MessageCode.ERROR,"error",false);
 		}
 	}
+	
+	
 	@PatchMapping(value = "updateStatus/{id}/userListWork",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> updateStatus(@RequestParam("status")Boolean status,@PathVariable("id")Integer id){
 		try {
@@ -84,6 +86,8 @@ public class User_ListWorkResource {
 			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"errorUpdate",false);
 		}
 	}
+	
+	
 	@DeleteMapping(value = "delete/{id}/userListWork",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> delete(@PathVariable("id")Integer id){
 		try {

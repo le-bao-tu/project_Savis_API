@@ -19,10 +19,10 @@ public class List_ProjectDAO_impl implements List_ProjectDAO{
 	
 	
 	@Override
-	public Page<List_Projects> getListpro(Pageable pageable,Boolean status) {
+	public Page<List_Projects> getListpro(Pageable pageable,Boolean role) {
 		// TODO Auto-generated method stub
 		try {
-			return list_ProjectRepository.findByStatus(pageable, status);
+			return list_ProjectRepository.findByRole(pageable, role);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -99,7 +99,7 @@ public class List_ProjectDAO_impl implements List_ProjectDAO{
 		try {
 			List_Projects listpro = list_ProjectRepository.getById(id);
 			listpro.setName(name);
-			list_ProjectRepository.save(listpro);
+			list_ProjectRepository.save(listpro);			
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -108,4 +108,7 @@ public class List_ProjectDAO_impl implements List_ProjectDAO{
 		}
 	}
 
+
+
+	
 }

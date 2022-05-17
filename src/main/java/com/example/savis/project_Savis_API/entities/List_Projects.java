@@ -42,7 +42,10 @@ public class List_Projects implements Serializable{
 	
 	@Column (name = "Status")
 	private Boolean status;
-
+	
+	@Column (name = "Role")
+	private Boolean role;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "list_Projects" , cascade = CascadeType.ALL)
 	private List<List_Work> listWord;

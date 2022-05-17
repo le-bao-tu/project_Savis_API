@@ -32,9 +32,9 @@ public class List_WorkResource {
 	
 	
 	@GetMapping(value = "/list_work",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Page<List_Work>> getListwork(Pageable pageable,@RequestParam("status") Boolean status) {
+	public ServiceResponse<Page<List_Work>> getListwork(Pageable pageable,@RequestParam("role") Boolean role) {
 		try {
-			return new ServiceResponse<Page<List_Work>>(MessageCode.SUCCESS,"success",list_WorkDAO.getList_Word(pageable,status));
+			return new ServiceResponse<Page<List_Work>>(MessageCode.SUCCESS,"success",list_WorkDAO.getList_Word(pageable,role));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -42,7 +42,7 @@ public class List_WorkResource {
 		}
 	}
 	
-	@PostMapping(value = "insert/{listproId}/listwork" , produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(value = "insert/{listproId}" , produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> insertlistwork(@PathVariable("listproId") Integer id , @RequestBody List_Work list_Work ) {
 		try {
 			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"insertSuccess",list_WorkDAO.insertWork(id, list_Work));
@@ -55,7 +55,7 @@ public class List_WorkResource {
 	
 	
 	
-	@PutMapping(value = "update/{listproId}/listwork" , produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PutMapping(value = "update/{listproId}" , produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> updatelistwork(@PathVariable("listproId") Integer id , @RequestBody List_Work list_Work ) {
 		try {
 			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"updateSuccess",list_WorkDAO.updateWork(id, list_Work));
@@ -78,21 +78,11 @@ public class List_WorkResource {
 		}
 	}
 	
+
 	
-	@PatchMapping(value = "updateStatus/{id}/listwork",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Boolean> updateStatsus(@RequestParam("status") Boolean status , @PathVariable("id") Integer id) {
-		try {
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"updateSuccess",list_WorkDAO.updateStatus(status, id));
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"errorUpdate",false);
-		}
-	}
+
 	
-	
-	
-	@DeleteMapping(value = "delete/{id}/listwork", produces = {MediaType.APPLICATION_JSON_VALUE})
+	@DeleteMapping(value = "delete/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> deletelistwork(@PathVariable("id") Integer id) {
 		try {
 			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"deleteSuccess",list_WorkDAO.deleteWork(id));
@@ -115,4 +105,17 @@ public class List_WorkResource {
 		}
 	}
 	
+	
+//	xóa mềm
+
+	@PatchMapping(value = "/ /{sorfId}",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<Boolean> soft_Erase(@PathVariable("sorfId")Integer id, @RequestParam("role")Boolean role) {
+		try {
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"success",list_WorkDAO.soft_Erase(role, id));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return new ServiceResponse<Boolean>(MessageCode.ERROR,"error",false);
+		}
+	}
 }

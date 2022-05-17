@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,6 @@ import com.example.savis.project_Savis_API.dto.ServiceResponse;
 import com.example.savis.project_Savis_API.entities.Comment;
 import com.example.savis.project_Savis_API.util.MessageCode;
 import com.example.savis.project_Savis_API.util.commentRequest;
-import com.example.savis.project_Savis_API.util.userRequest;
 
 @RequestMapping("api")
 @RestController
@@ -28,15 +28,16 @@ public class CommentResource {
 	@Autowired CommentDAO commentDAO;
 	
 	@GetMapping(value = "/comment_List",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Page<Comment>> getComment(Pageable pageable,@RequestParam("status")Boolean status){
+	public ServiceResponse<Page<Comment>> getComment(Pageable pageable,@RequestParam("role")Boolean role){
 		try {
-			return new ServiceResponse<Page<Comment>>(MessageCode.SUCCESS,"Seccess",commentDAO.getComment(pageable, status));
+			return new ServiceResponse<Page<Comment>>(MessageCode.SUCCESS,"Seccess",commentDAO.getComment(pageable, role));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return new ServiceResponse<Page<Comment>>(MessageCode.SUCCESS,"Seccess",null);
 		}
 	}
+	
 	@PostMapping(value = "/insertComment/{list_WorkId}and/{accountId}",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> insertComment(@PathVariable("list_WorkId")Integer listWorkId,@PathVariable("accountId")Integer accountId,@RequestBody Comment comment){
 		try {
@@ -47,6 +48,8 @@ public class CommentResource {
 			return new ServiceResponse<Boolean>(MessageCode.ERROR,"error",false);
 		}
 	}
+	
+	
 	@PatchMapping(value =  "updateTitle/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> updateTitle(@RequestParam("title")String title,@PathVariable("id")Integer id){
 		try {
@@ -58,6 +61,7 @@ public class CommentResource {
 		}
 	}
 	
+	//xóa cứng 	
 	@DeleteMapping(value =  "deleteComment/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> deleteComment(@PathVariable("id")Integer id){
 		try {
@@ -68,6 +72,19 @@ public class CommentResource {
 			return new ServiceResponse<Boolean>(MessageCode.ERROR,"erordeleter",false);
 		}
 	}
+	
+//	xóa mềm 
+	@PatchMapping(value = "soft_erase/{id}",produces =  {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<Boolean> soft_erase(@RequestParam("role") Boolean role, @PathVariable("id") Integer id) {
+		try {
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"soft_eraseSuccess",commentDAO.Soft_Erase(id, role));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"error",false);
+		}
+	}
+	
 	
 	@PostMapping(value ="/getComment")
 	public ResonpeBodyDto getUser(@RequestBody commentRequest request) {

@@ -59,6 +59,9 @@ public class List_Work implements Serializable{
 	@Column ( name = "Label")
 	private Integer label;
 	
+	@Column( name = "Role")
+	private Boolean role;
+	
 	@ManyToOne
 	@JoinColumn (name = "list_projectId")
 	private List_Projects list_Projects;

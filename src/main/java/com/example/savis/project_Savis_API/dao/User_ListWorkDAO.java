@@ -8,12 +8,13 @@ import com.example.savis.project_Savis_API.entities.User_ListWork;
 import com.example.savis.project_Savis_API.util.userRequest;
 
 public interface User_ListWorkDAO {
+	
 	public Page<User_ListWork> getUser_ListWork(Pageable pageable,Boolean status);
 
 	ResonpeBodyDto getUser_ListWorkCustom(userRequest request);
 
-	public Boolean InsertUserListWork(Integer listWorkId, Integer accountId, User_ListWork user_ListWork);
-	public Boolean UpdateUserListWork(Integer listWorkId, Integer accountId, User_ListWork user_ListWork);
-	public Boolean DeleteUserListWork(Integer user_ListWorkId);
+	public boolean InsertUserListWork(Integer listWorkId, Integer accountId, User_ListWork user_ListWork);
+	public boolean UpdateUserListWork(Integer listWorkId, Integer accountId, User_ListWork user_ListWork);
+	public boolean DeleteUserListWork(Integer user_ListWorkId);
 	public boolean updateStatus(Boolean status , Integer id);
 }

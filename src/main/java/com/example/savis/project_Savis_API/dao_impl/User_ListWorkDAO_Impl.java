@@ -31,7 +31,7 @@ public class User_ListWorkDAO_Impl implements User_ListWorkDAO {
 	@Override
 	public Page<User_ListWork> getUser_ListWork(Pageable pageable,Boolean status) {
 		try {
-			return user_ListWorkRepository.findAll(pageable);
+			return user_ListWorkRepository.findByStatus(pageable,status);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class User_ListWorkDAO_Impl implements User_ListWorkDAO {
 
 	@Override
 	@Transactional
-	public Boolean InsertUserListWork(Integer listWorkId,Integer accountId,User_ListWork user_ListWork) {
+	public boolean InsertUserListWork(Integer listWorkId,Integer accountId,User_ListWork user_ListWork) {
 		// TODO Auto-generated method stub
 		User_ListWork rs= null;
 		try {
@@ -90,7 +90,7 @@ public class User_ListWorkDAO_Impl implements User_ListWorkDAO {
 
 
 	@Override
-	public Boolean UpdateUserListWork(Integer listWorkId, Integer accountId, User_ListWork user_ListWork) {
+	public boolean UpdateUserListWork(Integer listWorkId, Integer accountId, User_ListWork user_ListWork) {
 		User_ListWork rs= null;
 		try {
 			Optional<List_Work>  listWork = list_WorkRepository.findById(listWorkId);
@@ -113,7 +113,7 @@ public class User_ListWorkDAO_Impl implements User_ListWorkDAO {
 
 
 	@Override
-	public Boolean DeleteUserListWork(Integer user_ListWorkId) {
+	public boolean DeleteUserListWork(Integer user_ListWorkId) {
 		try {
 			user_ListWorkRepository.deleteById(user_ListWorkId);
 			return true;

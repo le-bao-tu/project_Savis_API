@@ -30,9 +30,9 @@ public class CommentDAO_impl implements CommentDAO {
 	
 	
 	@Override
-	public Page<Comment> getComment(Pageable pageable,Boolean status) {
+	public Page<Comment> getComment(Pageable pageable,Boolean role) {
 		try {
-			return commentRepository.findByStatus(pageable, status);
+			return commentRepository.findByRole(pageable, role);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -40,6 +40,7 @@ public class CommentDAO_impl implements CommentDAO {
 		}
 	
 	}
+	
 	@Override
 	public ResonpeBodyDto getCommentCustom(commentRequest request) {
 		ResonpeBodyDto rs = new ResonpeBodyDto();
@@ -58,6 +59,7 @@ public class CommentDAO_impl implements CommentDAO {
 		}
 		return rs;
 	}
+	
 	@Override
 	@Transactional
 	public boolean InsertComment(Integer listWorkId, Integer accountId, Comment comment) {
@@ -68,7 +70,7 @@ public class CommentDAO_impl implements CommentDAO {
 			if(listWork.isPresent()&& account.isPresent()){
 				List_Work a = listWork.get();
 				Account b = account.get();
-				rs = new Comment(null,comment.getTitle(),comment.getStatus(),b,a);
+				rs = new Comment(null,comment.getTitle(),comment.getStatus(),comment.getRole(),b,a);
 			}
 			commentRepository.save(rs);
 			return true;
@@ -102,6 +104,21 @@ public class CommentDAO_impl implements CommentDAO {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	@Override
+	public boolean Soft_Erase(Integer id, Boolean role) {
+		// TODO Auto-generated method stub
+		try {
+			Comment cmt = commentRepository.getById(id);
+			cmt.setRole(role);
+			commentRepository.save(cmt);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 	
 }

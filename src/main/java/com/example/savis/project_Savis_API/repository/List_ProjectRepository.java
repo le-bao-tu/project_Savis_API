@@ -17,7 +17,7 @@ public interface List_ProjectRepository extends JpaRepository<List_Projects, Int
 	
 	List_Projects findByName(String name);
 	
-	Page<List_Projects> findByStatus(Pageable pageable,Boolean status);
+	Page<List_Projects> findByRole(Pageable pageable,Boolean role);
 	
 	@Query(value = "select * from List_Project where (:name is null or Name like %:name%)",nativeQuery = true)
 	List<List_Projects> listSearch(@Param("name") String name);

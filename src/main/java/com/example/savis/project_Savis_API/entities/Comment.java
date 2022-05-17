@@ -38,7 +38,11 @@ public class Comment implements Serializable {
 	@Column(name = "Status")
 	private Boolean status;
 	
-	@ManyToOne
+	@Column(name = "Role")
+	private Boolean role;
+	
+	
+	@ManyToOne	
 	@JoinColumn(name = "accountId")
 	private Account account;
 	

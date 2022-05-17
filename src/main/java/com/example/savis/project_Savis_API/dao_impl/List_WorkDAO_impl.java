@@ -21,10 +21,10 @@ public class List_WorkDAO_impl implements List_WorkDAO{
 	@Autowired List_WorkRepository list_WorkRepository;
 	
 	@Override
-	public Page<List_Work> getList_Word(Pageable pageable,Boolean status) {
+	public Page<List_Work> getList_Word(Pageable pageable,Boolean role) {
 		// TODO Auto-generated method stub
 		try {
-			return list_WorkRepository.findByStatus(pageable,status);
+			return list_WorkRepository.findByRole(pageable,role);
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -83,20 +83,7 @@ public class List_WorkDAO_impl implements List_WorkDAO{
 
 	
 	
-	@Override
-	public boolean updateStatus(Boolean status, Integer id) {
-		// TODO Auto-generated method stub
-		try {
-			List_Work list_Work = list_WorkRepository.getById(id);
-			list_Work.setStatus(status);
-			list_WorkRepository.save(list_Work);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return false;
-		}
-	}
+
 
 	@Override
 	public List<List_Work> getSearchByName(String name) {
@@ -121,6 +108,20 @@ public class List_WorkDAO_impl implements List_WorkDAO{
 			return null;
 		}
 		
+	}
+
+	@Override
+	public boolean soft_Erase(Boolean role, Integer id) {
+		try {
+			List_Work list_Work = list_WorkRepository.getById(id);
+			list_Work.setRole(role);
+			list_WorkRepository.save(list_Work);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 	

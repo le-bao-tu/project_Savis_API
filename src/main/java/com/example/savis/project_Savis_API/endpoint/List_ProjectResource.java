@@ -29,9 +29,9 @@ public class List_ProjectResource {
 	@Autowired List_ProjectDAO list_ProjectDAO;
 	
 	@GetMapping(value = "list_Project",produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Page<List_Projects>> getListpro(Pageable pageable,@RequestParam("status") Boolean status) {
+	public ServiceResponse<Page<List_Projects>> getListpro(Pageable pageable,@RequestParam("role") Boolean role) {
 		try {
-			return new ServiceResponse<Page<List_Projects>>(MessageCode.SUCCESS,"success",list_ProjectDAO.getListpro(pageable, status));
+			return new ServiceResponse<Page<List_Projects>>(MessageCode.SUCCESS,"success",list_ProjectDAO.getListpro(pageable, role));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -114,6 +114,7 @@ public class List_ProjectResource {
 		}
 	}
 	
+
 }	
 
 

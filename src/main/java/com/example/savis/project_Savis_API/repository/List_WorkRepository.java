@@ -16,7 +16,7 @@ public interface List_WorkRepository extends JpaRepository<List_Work, Integer>{
 	
 	List_Work findByName(String name);
 	
-	Page<List_Work> findByStatus(Pageable pageable,Boolean status);
+	Page<List_Work> findByRole(Pageable pageable,Boolean role);
 	
 	
 	@Query(value = "select * from List_Work where (:name is null or Name like %:name%)",nativeQuery = true)

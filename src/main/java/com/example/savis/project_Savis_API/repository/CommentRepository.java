@@ -9,5 +9,5 @@ import com.example.savis.project_Savis_API.entities.Comment;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Integer>  {
-	Page<Comment> findByStatus(Pageable pageable, Boolean status);
+	Page<Comment> findByRole(Pageable pageable, Boolean role);
 }

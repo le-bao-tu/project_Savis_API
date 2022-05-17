@@ -9,13 +9,13 @@ import com.example.savis.project_Savis_API.entities.List_Work;
 
 public interface List_WorkDAO {
 	
-	public Page<List_Work> getList_Word(Pageable pageable,Boolean status);
+	public Page<List_Work> getList_Word(Pageable pageable,Boolean role);
 	public boolean insertWork(Integer list_projectId , List_Work list_work);
 	public boolean updateWork(Integer list_projectId , List_Work list_work);
 	public boolean deleteWork(Integer listworkId);
 	public List_Work getListWorkById(Integer id);
-	public boolean updateStatus(Boolean status , Integer id);
 	public List<List_Work> getSearchByName(String name);
-	
+	public boolean soft_Erase(Boolean role , Integer id);
+
 	
 }
