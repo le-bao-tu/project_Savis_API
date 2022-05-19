@@ -9,18 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.savis.project_Savis_API.dao.CommentDAO;
-import com.example.savis.project_Savis_API.dto.ResonpeBodyDto;
 import com.example.savis.project_Savis_API.dto.ServiceResponse;
 import com.example.savis.project_Savis_API.entities.Comment;
 import com.example.savis.project_Savis_API.util.MessageCode;
-import com.example.savis.project_Savis_API.util.commentRequest;
 
 @RequestMapping("api")
 @RestController
@@ -34,7 +31,7 @@ public class CommentResource {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return new ServiceResponse<Page<Comment>>(MessageCode.SUCCESS,"Seccess",null);
+			return new ServiceResponse<Page<Comment>>(MessageCode.ERROR,"Seccess",null);
 		}
 	}
 	
@@ -57,7 +54,7 @@ public class CommentResource {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"errorUpdate",false);
+			return new ServiceResponse<Boolean>(MessageCode.ERROR,"errorUpdate",false);
 		}
 	}
 	
@@ -81,14 +78,36 @@ public class CommentResource {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"error",false);
+			return new ServiceResponse<Boolean>(MessageCode.ERROR,"error",false);
 		}
 	}
 	
 	
-	@PostMapping(value ="/getComment")
-	public ResonpeBodyDto getUser(@RequestBody commentRequest request) {
-//		ResonpeBodyDto rs = new ResonpeBodyDto<>();
-		return commentDAO.getCommentCustom(request);
+//	nut like 
+	@GetMapping(value = "/like/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<Boolean> like(@PathVariable("id")Integer id) {
+		try {
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"success",commentDAO.like(id));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return new ServiceResponse<Boolean>(MessageCode.ERROR,"success",false);
+		}
 	}
+	
+	
+	
+//	not like
+	@GetMapping(value = "/notlike/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<Boolean> notlike(@PathVariable("id") Integer id) {
+		try {
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"success",commentDAO.notlike(id));
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return new ServiceResponse<Boolean>(MessageCode.ERROR,"error",false);
+			
+		}
+	}
+	
 }
