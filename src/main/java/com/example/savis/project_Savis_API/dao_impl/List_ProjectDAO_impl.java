@@ -1,7 +1,9 @@
-package com.example.savis.project_Savis_API.dao_impl;
+	package com.example.savis.project_Savis_API.dao_impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,20 +18,29 @@ public class List_ProjectDAO_impl implements List_ProjectDAO{
 	
 	@Autowired List_ProjectRepository list_ProjectRepository;
 	
-	
+	private static final Logger LOGGER = LoggerFactory.getLogger(List_ProjectDAO_impl.class);
 	
 	@Override
 	public Page<List_Projects> getListpro(Pageable pageable,Boolean role) {
 		// TODO Auto-generated method stub
 		try {
+			
+			LOGGER.info("you have retrieved the list of records");
+			
 			return list_ProjectRepository.findByRole(pageable, role);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
+			LOGGER.error("error");
+			
 			e.printStackTrace();
 			return null;
+			
 		}
 	}
 
+	
+	
 	@Override
 	public boolean insertlistPro(List_Projects listpro) {
 		// TODO Auto-generated method stub

@@ -17,5 +17,9 @@ public interface CommentDAO {
 	public boolean DeleteComment(Integer commentId);
 //	xóa mềm 
 	public boolean Soft_Erase(Integer id);
+//	nut like
+	public boolean like(Integer id);
+//	not Like
+	public boolean notlike(Integer id);
 }
   	

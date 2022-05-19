@@ -11,6 +11,7 @@ public interface AccountDAO {
 	
 	public Page<Account> getListAccount(Pageable pageable);
 	public boolean registerAccount(Account account);
+		
 	public boolean updateAccountt(Account account);
 	public boolean deleteAccount(Integer accId);
 	public Account getListAccById(Integer accId);

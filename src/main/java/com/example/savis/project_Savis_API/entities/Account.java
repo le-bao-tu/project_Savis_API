@@ -60,4 +60,8 @@ public class Account implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy = "account" , cascade = CascadeType.ALL)
 	private List<Comment> comments;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "account" , cascade = CascadeType.ALL)
+	private List<Log> log;
 }

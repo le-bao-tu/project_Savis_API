@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.savis.project_Savis_API.Model.List_Work_ResourceModel;
 import com.example.savis.project_Savis_API.dao.List_WorkDAO;
 import com.example.savis.project_Savis_API.dto.ServiceResponse;
 import com.example.savis.project_Savis_API.entities.List_Work;
@@ -42,10 +42,10 @@ public class List_WorkResource {
 		}
 	}
 	
-	@PostMapping(value = "insert/{listproId}" , produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Boolean> insertlistwork(@PathVariable("listproId") Integer id , @RequestBody List_Work list_Work ) {
+	@PostMapping(value = "/insert" , produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<Boolean> insertlistwork( @RequestBody List_Work_ResourceModel list_Work ) {
 		try {
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"insertSuccess",list_WorkDAO.insertWork(id, list_Work));
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"insertSuccess",list_WorkDAO.insertWork(list_Work));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -55,10 +55,10 @@ public class List_WorkResource {
 	
 	
 	
-	@PutMapping(value = "update/{listproId}" , produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Boolean> updatelistwork(@PathVariable("listproId") Integer id , @RequestBody List_Work list_Work ) {
+	@PutMapping(value = "/update" , produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<Boolean> updatelistwork(@RequestBody List_Work_ResourceModel list_Work ) {
 		try {
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"updateSuccess",list_WorkDAO.updateWork(id, list_Work));
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"updateSuccess",list_WorkDAO.updateWork(list_Work));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

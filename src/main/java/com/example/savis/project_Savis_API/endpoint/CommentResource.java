@@ -38,7 +38,7 @@ public class CommentResource {
 		}
 	}
 	
-	@PostMapping(value = "/insertComment/{list_WorkId}and/{accountId}",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
+	@PostMapping(value = "/insertComment/{list_WorkId}/and/{accountId}",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
 	public ServiceResponse<Boolean> insertComment(@PathVariable("list_WorkId")Integer listWorkId,@PathVariable("accountId")Integer accountId,@RequestBody Comment comment){
 		try {
 			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"success",commentDAO.InsertComment(listWorkId, accountId, comment));

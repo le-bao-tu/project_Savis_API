@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.savis.project_Savis_API.Model.List_Work_ResourceModel;
 import com.example.savis.project_Savis_API.dao.List_WorkDAO;
 import com.example.savis.project_Savis_API.entities.List_Work;
 import com.example.savis.project_Savis_API.repository.List_ProjectRepository;
@@ -38,12 +39,22 @@ public class List_WorkDAO_impl implements List_WorkDAO{
 	}
 
 	@Override
-	public boolean insertWork(Integer list_projectId, List_Work list_work) {
+	public boolean insertWork(List_Work_ResourceModel list_work) {
 		// TODO Auto-generated method stub
 		
 		try {
-			 list_work.setList_Projects(list_ProjectRepository.findById(list_projectId).get());
-			 list_WorkRepository.save(list_work);
+			List_Work list_Work = new List_Work();
+			list_Work.setId(list_work.id);
+			list_Work.setName(list_work.name);
+			list_Work.setStatus(list_work.status);
+			list_Work.setStart_Date(list_work.start_Date);
+			list_Work.setEnd_Date(list_work.end_Date);
+			list_Work.setNote(list_work.note);
+			list_Work.setLabel(list_work.label);
+			list_Work.setRole(list_work.role);
+			
+			list_Work.setList_Projects(list_ProjectRepository.findById(Integer.valueOf(list_work.getList_project_id())).get());
+			 list_WorkRepository.save(list_Work);
 			 return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -56,11 +67,21 @@ public class List_WorkDAO_impl implements List_WorkDAO{
 	
 	
 	@Override
-	public boolean updateWork(Integer list_projectId, List_Work list_work) {
+	public boolean updateWork(List_Work_ResourceModel list_work) {
 		// TODO Auto-generated method stub
 		try {
-			list_work.setList_Projects(list_ProjectRepository.findById(list_projectId).get());
-			list_WorkRepository.save(list_work);
+			List_Work list_Work = new List_Work();
+			list_Work.setId(list_work.id);
+			list_Work.setName(list_work.name);
+			list_Work.setStatus(list_work.status);
+			list_Work.setStart_Date(list_work.start_Date);
+			list_Work.setEnd_Date(list_work.end_Date);
+			list_Work.setNote(list_work.note);
+			list_Work.setLabel(list_work.label);
+			list_Work.setRole(list_work.role);
+			
+			list_Work.setList_Projects(list_ProjectRepository.findById(Integer.valueOf(list_work.getList_project_id())).get());
+			list_WorkRepository.save(list_Work);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception

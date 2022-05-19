@@ -15,7 +15,6 @@ import com.example.savis.project_Savis_API.dto.ResonpeBodyDto;
 import com.example.savis.project_Savis_API.entities.Account;
 import com.example.savis.project_Savis_API.entities.Comment;
 import com.example.savis.project_Savis_API.entities.List_Work;
-import com.example.savis.project_Savis_API.entities.User_ListWork;
 import com.example.savis.project_Savis_API.repository.AccountRepository;
 import com.example.savis.project_Savis_API.repository.CommentRepository;
 import com.example.savis.project_Savis_API.repository.List_WorkRepository;
@@ -60,6 +59,7 @@ public class CommentDAO_impl implements CommentDAO {
 		return rs;
 	}
 	
+	
 	@Override
 	@Transactional
 	public boolean InsertComment(Integer listWorkId, Integer accountId, Comment comment) {
@@ -72,6 +72,7 @@ public class CommentDAO_impl implements CommentDAO {
 				Account b = account.get();
 				rs = new Comment(null,comment.getTitle(),comment.getStatus(),comment.getRole(),b,a);
 			}
+			
 			commentRepository.save(rs);
 			return true;
 		} catch (Exception e) {
@@ -81,6 +82,7 @@ public class CommentDAO_impl implements CommentDAO {
 		}
 		
 	}
+	
 	@Override
 	public boolean UpdateComment(String titel, Integer id) {
 		try {
@@ -128,5 +130,45 @@ public class CommentDAO_impl implements CommentDAO {
 		}
 		
 	}
+
+	@Override
+	public boolean like(Integer id) {
+		// TODO Auto-generated method stub
+		try {
+			Optional<Comment> cmt = commentRepository.findById(id);
+			if(cmt.isPresent()) {
+				cmt.get().setStatus(true);
+			}else {
+				System.err.println("error");
+			}
+			commentRepository.save(cmt.get());
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public boolean notlike(Integer id) {
+		// TODO Auto-generated method stub
+		try {
+			Optional<Comment> cmt = commentRepository.findById(id);
+			if(cmt.isPresent()) {
+				cmt.get().setStatus(false);
+			}else {
+				System.err.println("error");
+			}
+			commentRepository.save(cmt.get());
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
 	
 }
