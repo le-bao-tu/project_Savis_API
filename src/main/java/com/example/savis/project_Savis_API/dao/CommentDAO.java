@@ -3,6 +3,7 @@ package com.example.savis.project_Savis_API.dao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.example.savis.project_Savis_API.Model.Commnet_ResourceModel;
 import com.example.savis.project_Savis_API.dto.ResonpeBodyDto;
 import com.example.savis.project_Savis_API.entities.Comment;
 import com.example.savis.project_Savis_API.util.commentRequest;
@@ -12,7 +13,7 @@ public interface CommentDAO {
 	
 	ResonpeBodyDto getCommentCustom(commentRequest request);
 	
-	public boolean InsertComment(Integer listWorkId,Integer accountId,Comment comment);
+	public boolean InsertComment(Commnet_ResourceModel comment);
 	public boolean UpdateComment(String titel ,Integer id);
 	public boolean DeleteComment(Integer commentId);
 //	xóa mềm 

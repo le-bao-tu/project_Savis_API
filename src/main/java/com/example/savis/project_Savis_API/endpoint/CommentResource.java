@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.savis.project_Savis_API.Model.Commnet_ResourceModel;
 import com.example.savis.project_Savis_API.dao.CommentDAO;
 import com.example.savis.project_Savis_API.dto.ServiceResponse;
 import com.example.savis.project_Savis_API.entities.Comment;
@@ -35,10 +36,10 @@ public class CommentResource {
 		}
 	}
 	
-	@PostMapping(value = "/insertComment/{list_WorkId}/and/{accountId}",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
-	public ServiceResponse<Boolean> insertComment(@PathVariable("list_WorkId")Integer listWorkId,@PathVariable("accountId")Integer accountId,@RequestBody Comment comment){
+	@PostMapping(value = "/insertComment",produces = {MediaType.APPLICATION_JSON_VALUE},consumes = {MediaType.APPLICATION_JSON_VALUE})
+	public ServiceResponse<Boolean> insertComment(@RequestBody Commnet_ResourceModel comment){
 		try {
-			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"success",commentDAO.InsertComment(listWorkId, accountId, comment));
+			return new ServiceResponse<Boolean>(MessageCode.SUCCESS,"success",commentDAO.InsertComment(comment));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

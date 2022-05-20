@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.savis.project_Savis_API.Config.AES;
 import com.example.savis.project_Savis_API.dao.AccountDAO;
 import com.example.savis.project_Savis_API.entities.Account;
 import com.example.savis.project_Savis_API.entities.List_Projects;
@@ -32,10 +33,13 @@ public class AccountDAO_impl implements AccountDAO {
 		}
 	}
 	
+	
+	
 	@Override
 	public boolean registerAccount(Account account) {
 		// TODO Auto-generated method stub
 		try {
+			account.setPassword(AES.encrypt(account.getPassword(),"lebaotu@gmail.com"));
 			accountRepository.save(account);
 			return true; 
 		} catch (Exception e) {

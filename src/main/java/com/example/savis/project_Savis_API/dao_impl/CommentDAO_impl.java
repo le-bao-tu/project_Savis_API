@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.savis.project_Savis_API.Model.Commnet_ResourceModel;
 import com.example.savis.project_Savis_API.dao.CommentDAO;
 import com.example.savis.project_Savis_API.dto.ResonpeBodyDto;
 import com.example.savis.project_Savis_API.entities.Account;
@@ -62,18 +63,18 @@ public class CommentDAO_impl implements CommentDAO {
 	
 	@Override
 	@Transactional
-	public boolean InsertComment(Integer listWorkId, Integer accountId, Comment comment) {
-		Comment rs = null;
+	public boolean InsertComment(Commnet_ResourceModel comment) {
+	
 		try {
-			Optional<Account> account = accountRepository.findById(accountId);
-			Optional<List_Work> listWork = list_WorkRepository.findById(listWorkId);
-			if(listWork.isPresent()&& account.isPresent()){
-				List_Work a = listWork.get();
-				Account b = account.get();
-				rs = new Comment(null,comment.getTitle(),comment.getStatus(),comment.getRole(),b,a);
-			}
 			
-			commentRepository.save(rs);
+			Comment cmt = new Comment();
+			cmt.setId(comment.id);
+			cmt.setTitle(comment.title);
+			cmt.setStatus(comment.status);
+			cmt.setRole(comment.role);
+			cmt.setList_Work(list_WorkRepository.findById(Integer.valueOf(comment.getList_Work())).get());
+			cmt.setAccount(accountRepository.findById(Integer.valueOf(comment.getAccount())).get());
+			commentRepository.save(cmt);
 			return true;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -94,7 +95,7 @@ public class CommentDAO_impl implements CommentDAO {
 			// TODO: handle exception
 			e.printStackTrace();
 			return false;
-		}
+		} 
 	}
 	@Override
 	public boolean DeleteComment(Integer commentId) {

@@ -1,8 +1,5 @@
 package com.example.savis.project_Savis_API.Model;
 
-import com.example.savis.project_Savis_API.entities.Account;
-import com.example.savis.project_Savis_API.entities.List_Work;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +20,7 @@ public class Commnet_ResourceModel {
 	
 	public Boolean role;
 
-	public Account account;
+	public String account;
 	
-	public List_Work list_Work;
+	public String list_Work;
 }
